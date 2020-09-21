@@ -1,11 +1,12 @@
 <html>
     <head>
+        <link rel="stylesheet" href={{url_for('static',filename='styles.css')}}>
         <body>
             <h1>Random Recipes</h1>
-            <h5>{{msg}}</h5>
-            <h5>Recipe Name: {{title}}</h5>
-            <h5>{{screen_name}}: {{text}}</h5>
-            <h5>{{date}}</h5>
+            <p>{{msg}}</p>
+            <p>Recipe Name: {{title}}</p>
+            <p>{{screen_name}}: {{text}}</p>
+            <p>{{date}}</p>
         </body>
     </head>
 </html>

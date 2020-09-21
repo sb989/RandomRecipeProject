@@ -27,16 +27,13 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-
-
-
-
-
 @app.route('/')
+
 def index():
     tweet = []
-    spoon = True
-    while not tweet:
+    spoon = False
+    
+    while False:#not tweet:
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
         json_body = response.json()

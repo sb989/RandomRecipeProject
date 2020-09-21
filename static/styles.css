@@ -1,0 +1,18 @@
+body{
+    background-color:#55C1FF;
+    
+}
+
+h1{
+    font-family:Arial;
+    color: black;
+    text-align: center;
+}
+
+p{
+    font-family:Arial;
+    color: black;
+    text-align: left;
+    margin-left:40px;
+    margin-top:auto;
+}
