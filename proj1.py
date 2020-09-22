@@ -32,39 +32,43 @@ api = tweepy.API(auth)
 def index():
     tweet = []
     spoon = True
+    msg = ''
     
     while not tweet:
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
         json_body = response.json()
         
-        if json_body["status"] == 'failure':
+        if 'status' in json_body and json_body["status"] == 'failure':
             spoon = False
             break
         title = json_body["recipes"][0]["title"]
         title = title.strip('\"')
         print(title)
         tweet =api.search(q=title,lang="en",count=100)
-    if spoon:
-        size = len(tweet)
-        print(size)
-        num = random.randint(0,size-1)
-        text = tweet[num].text
-        screen_name = tweet[num].user.screen_name
-        date = tweet[num].created_at
-        return flask.render_template(
-            "index.html",
-            title = title,
-            text = text,
-            screen_name = screen_name,
-            date = date
-            )
-    else:
-        msg = "Sorry. We've reached the max number of recipes for today. Please try again tomorrow."
-        return flask.render_template(
-            "index.html",
-            msg=msg
-            )
+        
+    if not spoon:
+        recipes = ['Spaghetti & Meatballs','PB&J','Scrambled Eggs','Pancakes','Ribs','Ramen','Fried Rice']
+        title = recipes[random.randint(0,6)]
+        tweet =api.search(q=title,lang="en",count=100)
+        msg = "Spoonacular has reached the max number of requests. Picking a recipe from memory."
+    size = len(tweet)
+    print(size)
+    num = random.randint(0,size-1)
+    text = tweet[num].text
+    screen_name = tweet[num].user.screen_name
+    date = tweet[num].created_at
+    
+    return flask.render_template(
+        "index.html",
+        msg=msg,
+        title = title,
+        text = text,
+        screen_name = screen_name,
+        date = date
+        )
+    
+        
         
 app.run(
     port = int(os.getenv("PORT", 8080)),   
