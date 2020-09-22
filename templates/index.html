@@ -3,10 +3,16 @@
         <link rel="stylesheet" href={{url_for('static',filename='styles.css')}}>
         <body>
             <h1>Random Recipes</h1>
-            <p>{{msg}}</p>
-            <p>Recipe Name: {{title}}</p>
-            <p>{{screen_name}}: {{text}}</p>
-            <p>{{date}}</p>
+            
+            <div class = "border">
+               <div class = "title"><b>{{title}}</b><br></div> 
+               <img src={{img}} class="img"> 
+               <div class = "text"><b>@{{screen_name}}:</b> {{text}}</div>
+               <div class = "date">{{date}}</div>
+            </div>
+               
+                
+            <div class="spoon">{{msg}}</div>
         </body>
     </head>
 </html>
