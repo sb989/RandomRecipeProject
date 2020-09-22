@@ -4,18 +4,18 @@ Follow these steps to get this repository running:
 3. Click on the key symbol to retrieve your api keys and access tokens
 4. Sign up for a spoonacular api account by going to https://spoonacular.com/food-api/console#Dashboard
 5. After logging in head to https://spoonacular.com/food-api/console#Profile to obtain your spoonacular api key
-6. Clone this repo by executing git clone https://github.com/NJIT-CS490/project1-sb989.git
+6. Clone this repo by executing git clone `https://github.com/NJIT-CS490/project1-sb989.git`
 7. Install tweepy by performing one of the following commands on your terminal:
-    sudo pip install tweepy
-    sudo pip3 install tweepy
-    pip install tweepy
-    pip3 install tweepy
+* sudo pip install tweepy
+* sudo pip3 install tweepy
+* pip install tweepy
+* pip3 install tweepy
 8. Install flask and python-dotenv by using one of the commands above, and replacing tweepy with the name of the program (e.g. pip install flask)
 9. Create a file called twitter.env and place your twitter keys and tokens in there. It should look like this:
-    API_KEY='xxxxx'
-    API_S_KEY='xxxxx'
-    ACCESS_TOKEN='xxxxx'
-    ACCESS_TOKEN_S='xxxxx'
+    * API_KEY='xxxxx'
+    * API_S_KEY='xxxxx'
+    * ACCESS_TOKEN='xxxxx'
+    * ACCESS_TOKEN_S='xxxxx'
 10. Create a file called spoonacular.env and place your spoonacular api key in there. It should look like this:
     SPOONACULAR_KEY='xxxxx'
 11. twitter.env and spoonacular.env can be placed anywhere as long as the paths in proj1.py are correct.
