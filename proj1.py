@@ -10,11 +10,11 @@ import random
 
 app = flask.Flask(__name__)
 
-dotenv_path = join(dirname(__file__), '../twitter.env')
-load_dotenv(dotenv_path)
+twitter_path = join(dirname(__file__), '../keys/twitter.env')
+load_dotenv(twitter_path)
 
-dotenv_path = join(dirname(__file__), '../spoonacular.env')
-load_dotenv(dotenv_path)
+spoon_path = join(dirname(__file__), '../keys/spoonacular.env')
+load_dotenv(spoon_path)
 
 spoonacular_key = os.environ['SPOONACULAR_KEY']
 
