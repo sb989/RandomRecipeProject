@@ -22,7 +22,8 @@
     * For example, if twitter.env is placed in the same folder as this repo then in proj1.py : 
         * twitter_path = join(dirname(__file__), 'twitter.env') 
     * The same applies to spoon_path in proj1.py
-12. If the .env files are placed anywhere in the same folder as this repo, be sure to create a .gitignore and include twitter.env and spoonacular.env in it
+12. If the .env files are placed anywhere in the same folder as this repo, be sure to create a .gitignore and include twitter.env and spoonacular.env in it  
+    (A .gitignore is not included with the repo because I keep my keys in a seperate folder)
 13. Run `python proj1.py`
 14. If on cloud9 clicking Preview, then Preview Running Application, should open the site
 
