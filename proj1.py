@@ -34,6 +34,7 @@ def index():
     spoon = True
     msg = ''
     img = 'https://www.applesfromny.com/wp-content/uploads/2020/05/Rome_NYAS-Apples2.png'
+    ing = []
     while not tweet:
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
@@ -47,7 +48,11 @@ def index():
         img = json_body["recipes"][0]["image"]
         img = img.strip('\"')
         tweet =api.search(q=title,lang="en",count=100)
-        
+        json_ing = json_body["recipes"][0]["extendedIngredients"]
+        ing_size = len(ing)
+        for jing in json_ing:
+            ing.append(jing["original"])
+    print(ing)
     if not spoon:
         recipes = ['Spaghetti & Meatballs','PB&J','Scrambled Eggs','Pancakes','Ribs','Ramen','Fried Rice']
         title = recipes[random.randint(0,6)]
@@ -67,7 +72,8 @@ def index():
         text = text,
         screen_name = screen_name,
         date = date,
-        img=img
+        img=img,
+        ing=ing
         )
     
         

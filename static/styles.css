@@ -1,11 +1,12 @@
 body{
     background-color:#0075A2;
-    
+    overflow-y:scroll;
+    height:auto;
 }
 
 h1{
     font-family:Arial;
-    color: #EEE5E9;
+    color: #120D31;
     text-align: center;
 }
 
@@ -13,51 +14,61 @@ h1{
 
 .border{
     font-family:Arial;
-    color: black;
+    color: #120D31;
     text-align: left;
-    margin-left:20px;
-    margin-right:20px;
+    margin-left:1em;
+    margin-right:1em;
+    margin-bottom:auto;
     margin-top:auto;
-    border: 3px solid black;
-    border-radius: 10px;
-    background-color:#92DCE5;
-    height:85%;
+    border: .2em solid black;
+    border-radius: 1em;
+    background-color:#F4EDEA;
     position:relative;
 }
 
 .title{
-    font-size:2em;
-    margin-left:20px;
-    margin-top:10px;
+    text-align: left;
+    margin-left:1em;
+    margin-top:.5em;
 }
 
-.img{
-    max-width:50%;
-    max-height:70%;
-    margin-top:10px;
-    margin-left:20px;
+.info{
+    display:flex;
 }
+
+.foodPic{
+    max-width:40%;
+    max-height:40%;
+    width:auto;
+    height:auto;
+    margin-top:1em;
+    margin-left:2em;
+    margin-right:2em;
+    border: .1em solid black;
+    float:left;
+}
+
+
 
 .text{
     font-size:1.2em;
-    margin-left:20px;
-    position:absolute;
-    bottom: 45px;
+    margin-left:2em;
+    margin-top:1em;
+    margin-right:1em;
 }
 
 .date{
     font-size:1.2em;
-    margin-left:20px;
-    
-    position:absolute;
-    bottom: 20px;
+    margin-left:2em;
+    margin-bottom:1em;
 }
 .spoon{
     font-family:Arial;
-    color: #EEE5E9;
+    color: #120D31;
     text-align: left;
-    margin-left:40px;
-    margin-top:auto;
-    position: absolute;
-    bottom: 10px;
+    margin-left:4em;
+    margin-top:1em;
+    margin-bottom:1em;
+    position: static;
+    
 }

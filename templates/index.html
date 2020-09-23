@@ -5,13 +5,23 @@
             <h1>Random Recipes</h1>
             
             <div class = "border">
-               <div class = "title"><b>{{title}}</b><br></div> 
-               <img src={{img}} class="img"> 
+               <h1 class = "title"><b>{{title}}</b><br></h1> 
+               <div class = "info">
+                   <img src={{img}} class="foodPic">
+                   <div>
+                       <h2>Ingredients</h2>
+                        <ul>
+                           {% for ingredient in ing %}
+                           <li>{{ingredient}}</li>
+                           {% endfor %}
+                        </ul>
+                   </div>
+                   
+               </div>
                <div class = "text"><b>@{{screen_name}}:</b> {{text}}</div>
                <div class = "date">{{date}}</div>
             </div>
                
-                
             <div class="spoon">{{msg}}</div>
         </body>
     </head>
