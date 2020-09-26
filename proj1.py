@@ -35,13 +35,19 @@ def save_recipe(recipe):
         recipes["recipes"].pop(0)
     else:
         recipes["nextEntry"]+=1
-    print("length is ",len(recipes["recipes"]))
     recipes["recipes"].append(recipe)
     file.close()
     file = open('recipes.json','w')
     json.dump(recipes,file,indent=4)
     file.close()
-    
+
+def load_recipe():
+    file = open('recipes.json','r')
+    recipes = json.load(file)
+    size = recipes["nextEntry"]
+    entry = random.randint(0,size-1)
+    recipe = recipes["recipes"][entry]
+    return recipe
     
 @app.route('/')
 def index():
@@ -54,27 +60,24 @@ def index():
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
         json_body = response.json()
-        #print(json_body)
+        json_body = json_body["recipes"][0]
         if 'status' in json_body and json_body["status"] == 'failure':
-            spoon = False
-            break
-        title = json_body["recipes"][0]["title"]
+            json_body = load_recipe()
+            msg = "Spoonacular has reached the max number of requests. Picking a recipe from memory."
+        else:
+            save_recipe(json_body)
+        title = json_body["title"]
         title = title.strip('\"')
-        if "image" in json_body["recipes"][0]:
-            img = json_body["recipes"][0]["image"]
+        if "image" in json_body:
+            img = json_body["image"]
             img = img.strip('\"')
         tweet =api.search(q=title,lang="en",count=100)
-        json_ing = json_body["recipes"][0]["extendedIngredients"]
+        json_ing = json_body["extendedIngredients"]
         ing_size = len(ing)
-        save_recipe(json_body["recipes"][0])
+        
         for jing in json_ing:
             ing.append(jing["original"])
-    #print(ing)
-    if not spoon:
-        recipes = ['Spaghetti & Meatballs','PB&J','Scrambled Eggs','Pancakes','Ribs','Ramen','Fried Rice']
-        title = recipes[random.randint(0,6)]
-        tweet =api.search(q=title,lang="en",count=100)
-        msg = "Spoonacular has reached the max number of requests. Picking a recipe from memory."
+    
     size = len(tweet)
     print(size)
     num = random.randint(0,size-1)
