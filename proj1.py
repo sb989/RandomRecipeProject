@@ -39,7 +39,7 @@ def index():
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
         json_body = response.json()
-        
+        print(json_body)
         if 'status' in json_body and json_body["status"] == 'failure':
             spoon = False
             break
