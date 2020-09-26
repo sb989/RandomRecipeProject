@@ -16,7 +16,7 @@ load_dotenv(twitter_path)
 spoon_path = join(dirname(__file__), '../keys/spoonacular.env')
 load_dotenv(spoon_path)
 
-spoonacular_key = os.environ['SPOONACULAR_KEY']
+spoonacular_key = os.getenv('SPOONACULAR_KEY')
 
 consumer_key = os.getenv("API_KEY")
 consumer_secret = os.getenv("API_S_KEY")
