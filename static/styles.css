@@ -31,14 +31,19 @@ h1{
     margin-left:1em;
     margin-top:.5em;
 }
-
-.info{
+.info1{
     display:flex;
+    text-align: center;
+}
+
+.info2{
+    display:flex;
+    flex-wrap:wrap;
 }
 
 .foodPic{
-    max-width:40%;
-    max-height:40%;
+    max-width:100%;
+    max-height:100%;
     width:auto;
     height:auto;
     margin-top:1em;

@@ -56,6 +56,9 @@ def index():
     msg = ''
     img = 'https://www.applesfromny.com/wp-content/uploads/2020/05/Rome_NYAS-Apples2.png'
     ing = []
+    peopleimg = 'https://www.tuktukdesign.com/wp-content/uploads/2020/01/people-icon-vector.jpg'
+    servings = 0
+    time = 0 
     while not tweet:
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
@@ -74,7 +77,8 @@ def index():
         tweet =api.search(q=title,lang="en",count=100)
         json_ing = json_body["extendedIngredients"]
         ing_size = len(ing)
-        
+        time = json_body["readyInMinutes"]
+        servings = json_body["servings"]
         for jing in json_ing:
             ing.append(jing["original"])
     
@@ -87,20 +91,23 @@ def index():
     
     return flask.render_template(
         "index.html",
-        msg=msg,
+        msg = msg,
         title = title,
         text = text,
         screen_name = screen_name,
         date = date,
-        img=img,
-        ing=ing
+        img = img,
+        ing = ing,
+        serving = servings,
+        time = time
         )
     
         
         
 app.run(
     port = int(os.getenv("PORT", 8080)),   
-    host = os.getenv("IP", "0.0.0.0")
+    host = os.getenv("IP", "0.0.0.0"),
+    debug=True
 )
 
 
