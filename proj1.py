@@ -56,18 +56,20 @@ def index():
     msg = ''
     img = 'https://www.applesfromny.com/wp-content/uploads/2020/05/Rome_NYAS-Apples2.png'
     ing = []
-    peopleimg = 'https://www.tuktukdesign.com/wp-content/uploads/2020/01/people-icon-vector.jpg'
+    peopleimg = 'https://image.flaticon.com/icons/png/512/33/33308.png'
+    clockimg = 'https://i.pinimg.com/originals/ee/d9/1f/eed91fa31eb4f997f870997a3bc561e3.png'
     servings = 0
     time = 0 
     while not tweet:
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
         json_body = response.json()
-        json_body = json_body["recipes"][0]
+        
         if 'status' in json_body and json_body["status"] == 'failure':
             json_body = load_recipe()
             msg = "Spoonacular has reached the max number of requests. Picking a recipe from memory."
         else:
+            json_body = json_body["recipes"][0]
             save_recipe(json_body)
         title = json_body["title"]
         title = title.strip('\"')
@@ -98,8 +100,10 @@ def index():
         date = date,
         img = img,
         ing = ing,
-        serving = servings,
-        time = time
+        servings = servings,
+        time = time,
+        people = peopleimg,
+        clock = clockimg
         )
     
         

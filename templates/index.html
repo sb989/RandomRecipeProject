@@ -5,33 +5,40 @@
             <h1>Random Recipes</h1>
             
             <div class = "border">
+                
                 <h1 class = "title"><b>{{title}}</b><br></h1> 
+                
                 <div class = "info1">
                     <div>
-                       <h2>Serving Size</h2>
-                       {{servings}}
-                   </div>
-                   <div>
-                       <h2>Prep Time</h2>
-                       {{time}}
-                   </div>
-               </div>
-               <div class = "info2">
-                   <div>
                         <img src={{img}} class="foodPic">
-                   </div>
-                   <div>
-                        <h2>Ingredients</h2>
-                        <ul>
-                           {% for ingredient in ing %}
-                           <li>{{ingredient}}</li>
-                           {% endfor %}
-                        </ul>
-                   </div>
+                    </div>
                    
+                    <div class = "servingsize">
+                        <img src={{people}} class="peoplePic">
+                        <h3>Serving Size</h3>
+                        {{servings}}
+                    </div>
+                   
+                    <div class = "preptime">
+                        <img src={{clock}} class="clockPic">
+                        <h3>Prep Time</h3>
+                        {{time}}
+                    </div>
                 </div>
-                <div class = "text">
-                   <b>@{{screen_name}}:</b> {{text}}
+               
+                   
+                <div class = "ingredients">
+                    <h2>Ingredients</h2>
+                    <ul>
+                        {% for ingredient in ing %}
+                        <li>{{ingredient}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                   
+                
+                <div class = "tweet">
+                    <b>@{{screen_name}}:</b> {{text}}
                 </div>
                 <div class = "date">{{date}}</div>
                 </div>

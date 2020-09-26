@@ -33,29 +33,50 @@ h1{
 }
 .info1{
     display:flex;
+    flex-wrap:nowrap;
     text-align: center;
-}
 
-.info2{
-    display:flex;
-    flex-wrap:wrap;
 }
-
+.servingsize{
+    font-size:1.2em;
+}
+.preptime{
+    font-size:1.2em;
+}
 .foodPic{
-    max-width:100%;
-    max-height:100%;
-    width:auto;
-    height:auto;
+    max-width:70%;
+    max-height:70%;
+    
     margin-top:1em;
-    margin-left:2em;
+    margin-left:4em;
     margin-right:2em;
     border: .1em solid black;
     float:left;
 }
 
+.peoplePic{
+    max-width:4em;
+    max-height:4em;
+}
+.clockPic{
+    max-width:4em;
+    max-height:4em;
+}
+.ingredients{
+    margin-left:2em;
+}
 
 
-.text{
+ul{
+    columns:2;
+}
+
+
+
+
+
+
+.tweet{
     font-size:1.2em;
     margin-left:2em;
     margin-top:1em;
