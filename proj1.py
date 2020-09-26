@@ -27,8 +27,23 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-@app.route('/')
 
+def save_recipe(recipe):
+    file = open('recipes.json','r')
+    recipes = json.load(file)
+    if recipes["nextEntry"]==200:
+        recipes["recipes"].pop(0)
+    else:
+        recipes["nextEntry"]+=1
+    print("length is ",len(recipes["recipes"]))
+    recipes["recipes"].append(recipe)
+    file.close()
+    file = open('recipes.json','w')
+    json.dump(recipes,file,indent=4)
+    file.close()
+    
+    
+@app.route('/')
 def index():
     tweet = []
     spoon = True
@@ -39,20 +54,22 @@ def index():
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
         json_body = response.json()
-        print(json_body)
+        #print(json_body)
         if 'status' in json_body and json_body["status"] == 'failure':
             spoon = False
             break
         title = json_body["recipes"][0]["title"]
         title = title.strip('\"')
-        img = json_body["recipes"][0]["image"]
-        img = img.strip('\"')
+        if "image" in json_body["recipes"][0]:
+            img = json_body["recipes"][0]["image"]
+            img = img.strip('\"')
         tweet =api.search(q=title,lang="en",count=100)
         json_ing = json_body["recipes"][0]["extendedIngredients"]
         ing_size = len(ing)
+        save_recipe(json_body["recipes"][0])
         for jing in json_ing:
             ing.append(jing["original"])
-    print(ing)
+    #print(ing)
     if not spoon:
         recipes = ['Spaghetti & Meatballs','PB&J','Scrambled Eggs','Pancakes','Ribs','Ramen','Fried Rice']
         title = recipes[random.randint(0,6)]
@@ -82,3 +99,7 @@ app.run(
     port = int(os.getenv("PORT", 8080)),   
     host = os.getenv("IP", "0.0.0.0")
 )
+
+
+#def load_recipe():
+    
