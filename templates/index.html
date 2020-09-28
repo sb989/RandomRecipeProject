@@ -2,27 +2,44 @@
     <head>
         <link rel="stylesheet" href={{url_for('static',filename='styles.css')}}>
         <body>
-            <h1>Random Recipes</h1>
+            
+            <div class="header">
+                <h1 class = "page_name">Random Recipes</h1>
+                
+                <div class = "search">
+                    <form autocomplete="off">
+                        <div>
+                            <input class="recipeInput "id="myInput" type="text" name="recipe" placeholder="Recipe">
+                            <input type="submit" class= "submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
             
             <div class = "border">
-                
-                <h1 class = "title"><b>{{title}}</b><br></h1> 
-                
                 <div class = "info1">
                     <div>
+                        <h1 class = "title"><a href={{originalSite}}> <b>{{title}}</b><br> </a></h1> 
                         <img src={{img}} class="foodPic">
                     </div>
                    
                     <div class = "servingsize">
                         <img src={{people}} class="peoplePic">
                         <h3>Serving Size</h3>
-                        {{servings}}
+                        <div class ="servingsizeNum">
+                            <b>{{servings}}</b>
+                        </div>
+                        
                     </div>
                    
                     <div class = "preptime">
                         <img src={{clock}} class="clockPic">
                         <h3>Prep Time</h3>
-                        {{time}}
+                        <div class ="preptimeNum">
+                            <b>{{time}} min</b>
+                        </div>
+                        
                     </div>
                 </div>
                

@@ -54,12 +54,13 @@ def index():
     tweet = []
     spoon = True
     msg = ''
-    img = 'https://www.applesfromny.com/wp-content/uploads/2020/05/Rome_NYAS-Apples2.png'
+    img = 'https://spoonacular.com/cdn/ingredients_500x500/apple.jpg'
     ing = []
-    peopleimg = 'https://image.flaticon.com/icons/png/512/33/33308.png'
-    clockimg = 'https://i.pinimg.com/originals/ee/d9/1f/eed91fa31eb4f997f870997a3bc561e3.png'
+    peopleimg = 'static/people.png'
+    clockimg = 'static/clock.png'
     servings = 0
     time = 0 
+    originalSite = ''
     while not tweet:
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
@@ -73,9 +74,12 @@ def index():
             save_recipe(json_body)
         title = json_body["title"]
         title = title.strip('\"')
-        if "image" in json_body:
-            img = json_body["image"]
-            img = img.strip('\"')
+        if "image" not in json_body:
+            continue
+        img = json_body["image"]
+        img = img.strip('\"')
+    
+        originalSite = json_body["sourceUrl"]
         tweet =api.search(q=title,lang="en",count=100)
         json_ing = json_body["extendedIngredients"]
         ing_size = len(ing)
@@ -103,7 +107,8 @@ def index():
         servings = servings,
         time = time,
         people = peopleimg,
-        clock = clockimg
+        clock = clockimg,
+        originalSite = originalSite
         )
     
         

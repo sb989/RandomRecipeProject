@@ -1,100 +1,150 @@
 body{
-    background-color:#0075A2;
+    background-color:#F4EDEA;
     overflow-y:scroll;
     height:auto;
+    font-size:12;
 }
 
-h1{
-    font-family:Arial;
-    color: #120D31;
-    text-align: center;
+.header{
+    border-bottom-style:solid;
+    background-color:#605770;
+    height:8rem;
+    width:100%;
+    justify-content:center;
+    position:fixed;
+    z-index:2;
 }
 
+.search{
+    float:right;
+    margin-right:1%;
+    margin-bottom:.5%;
+    width:auto;
+    height:auto;
+    
+}
 
+.recipeInput{
+    width:auto;
+    height:auto;
+    display:block;
+}
+
+.submit{
+    width:auto;
+    height:auto;
+    display:block;
+}
+
+.page_name{
+    font-family:Helvetica;
+    color: #160C28;
+    margin-left:3rem;
+    display:inline-block;
+}
 
 .border{
-    font-family:Arial;
-    color: #120D31;
+    font-family:Helvetica;
+    color: #000411;
+    height:auto;
+    width:auto;
     text-align: left;
-    margin-left:1em;
-    margin-right:1em;
+    margin-left:6rem;
+    margin-right:6rem;
     margin-bottom:auto;
-    margin-top:auto;
-    border: .2em solid black;
-    border-radius: 1em;
-    background-color:#F4EDEA;
+    /*margin-top:;*/
+    border: .2rem solid black;
+    border-radius: 1rem;
+    background-color:#605770;
     position:relative;
+    top:12rem;
+    display:block;
+    z-index:1;
 }
 
 .title{
     text-align: left;
-    margin-left:1em;
-    margin-top:.5em;
+/*    margin-left:4em;
+*/    margin-top:2rem;
 }
 .info1{
     display:flex;
-    flex-wrap:nowrap;
     text-align: center;
-
+    justify-content: space-around;  
+    height:20rem;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:2.4rem;
+    width:80%;
 }
 .servingsize{
-    font-size:1.2em;
+    font-size:1.2rem;
+    margin-right:20%;
+}
+.servingsizeNum{
+    font-size:1.3rem;
 }
 .preptime{
-    font-size:1.2em;
+    font-size:1.2rem;
 }
+.preptimeNum{
+    font-size:1.3rem;    
+}
+
 .foodPic{
-    max-width:70%;
-    max-height:70%;
-    
-    margin-top:1em;
-    margin-left:4em;
-    margin-right:2em;
-    border: .1em solid black;
+    max-width:80%;
+    max-height:80%;
+    height:auto;
+    width:auto;
+    margin-top:1rem;
     float:left;
+    border-radius:3px;
+    border: 1px solid black;
 }
 
 .peoplePic{
-    max-width:4em;
-    max-height:4em;
+    max-width:100%;
+    max-height:100%;
+    margin-top:4rem;
 }
 .clockPic{
-    max-width:4em;
-    max-height:4em;
+    max-width:100%;
+    max-height:100%;
+    margin-top:4rem;
 }
 .ingredients{
-    margin-left:2em;
+    
+    margin-top:5%;
+    margin-left : auto;
+    margin-right: auto;
+    width:80%;
 }
 
 
 ul{
     columns:2;
+    margin:auto;
+    font-size:1.2rem;
 }
 
-
-
-
-
-
 .tweet{
-    font-size:1.2em;
-    margin-left:2em;
-    margin-top:1em;
-    margin-right:1em;
+    font-size:1.2rem;
+    margin-left:2rem;
+    margin-top:1rem;
+    margin-right:1rem;
 }
 
 .date{
-    font-size:1.2em;
-    margin-left:2em;
-    margin-bottom:1em;
+    font-size:1.2rem;
+    margin-left:2rem;
+    margin-bottom:1rem;
 }
 .spoon{
-    font-family:Arial;
+    font-family:Helvetica;
     color: #120D31;
     text-align: left;
-    margin-left:4em;
-    margin-top:1em;
-    margin-bottom:1em;
+    margin-left:4rem;
+    margin-top:1rem;
+    margin-bottom:1rem;
     position: static;
-    
 }
