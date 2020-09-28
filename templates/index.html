@@ -4,7 +4,12 @@
         <body>
             
             <div class="header">
-                <h1 class = "page_name">Random Recipes</h1>
+                
+                <a href = '/' class="carrot">
+                    <img src={{carrot}} class="carrotPic">
+                    
+                    <h1 class = "page_name">Random Recipes</h1>
+                </a>
                 
                 <div class = "search">
                     <form autocomplete="off">
@@ -14,54 +19,64 @@
                         </div>
                     </form>
                 </div>
+                
             </div>
             
-            
-            <div class = "border">
-                <div class = "info1">
-                    <div>
-                        <h1 class = "title"><a href={{originalSite}}> <b>{{title}}</b><br> </a></h1> 
-                        <img src={{img}} class="foodPic">
-                    </div>
-                   
-                    <div class = "servingsize">
-                        <img src={{people}} class="peoplePic">
-                        <h3>Serving Size</h3>
-                        <div class ="servingsizeNum">
-                            <b>{{servings}}</b>
+            <div>
+                <div class = "border">
+                    <div class = "info1">
+                        <div>
+                            <h1 class = "title"><a href={{originalSite}}> <b>{{title}}</b><br> </a></h1> 
+                            <div class="clearfix">
+                                <img src={{img}} class="foodPic">
+                            </div>
+                            
                         </div>
-                        
-                    </div>
-                   
-                    <div class = "preptime">
-                        <img src={{clock}} class="clockPic">
-                        <h3>Prep Time</h3>
-                        <div class ="preptimeNum">
-                            <b>{{time}} min</b>
+                       
+                        <div class = "servingsize">
+                            <img src={{people}} class="peoplePic">
+                            <h3>Serving Size</h3>
+                            <div class ="servingsizeNum">
+                                <b>{{servings}}</b>
+                            </div>
+                            
                         </div>
-                        
+                       
+                        <div class = "preptime">
+                            <img src={{clock}} class="clockPic">
+                            <h3>Prep Time</h3>
+                            <div class ="preptimeNum">
+                                <b>{{time}} min</b>
+                            </div>
+                            
+                        </div>
                     </div>
-                </div>
-               
                    
-                <div class = "ingredients">
-                    <h2>Ingredients</h2>
-                    <ul>
-                        {% for ingredient in ing %}
-                        <li>{{ingredient}}</li>
-                        {% endfor %}
-                    </ul>
+                       
+                    <div class = "ingredients">
+                        <h2>Ingredients</h2>
+                        <ul>
+                            {% for ingredient in ing %}
+                            <li>{{ingredient}}</li>
+                            {% endfor %}
+                        </ul>
+                    
+                    </div>
+                       
+                    
+                    <div class = "tweet">
+                        <b>@{{screen_name}}:</b> {{text}}
+                    </div>
+                    <div class = "date">{{date}}</div>
                 </div>
-                   
                 
-                <div class = "tweet">
-                    <b>@{{screen_name}}:</b> {{text}}
-                </div>
-                <div class = "date">{{date}}</div>
-                </div>
+                <div class="spoon">{{msg}}</div>
+            </div>
+            
                
-            <div class="spoon">{{msg}}</div>
+            
         </body>
+        
     </head>
 </html>
 

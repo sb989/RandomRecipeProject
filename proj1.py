@@ -58,6 +58,7 @@ def index():
     ing = []
     peopleimg = 'static/people.png'
     clockimg = 'static/clock.png'
+    carrot = 'static/carrot.png'
     servings = 0
     time = 0 
     originalSite = ''
@@ -108,7 +109,8 @@ def index():
         time = time,
         people = peopleimg,
         clock = clockimg,
-        originalSite = originalSite
+        originalSite = originalSite,
+        carrot=carrot
         )
     
         

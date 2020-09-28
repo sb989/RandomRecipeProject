@@ -1,61 +1,89 @@
 body{
-    background-color:#F4EDEA;
+    background-color:#FEFDFF;
     overflow-y:scroll;
-    height:auto;
+    height:100%;
     font-size:12;
+    position:relative;
+    
 }
 
 .header{
-    border-bottom-style:solid;
-    background-color:#605770;
+
+    background-color:#343E3D;
     height:8rem;
     width:100%;
     justify-content:center;
     position:fixed;
+    top:0px;
+    left:0px;
     z-index:2;
 }
 
+.carrot{
+    
+    position:relative;
+    left:7rem;
+    top:1.5rem;
+    width:auto;
+    height:60%;
+    justify-content:center;
+    display:inline-block;
+}
+.carrotPic{
+   height:100%;
+   width:auto;
+/*   border:1px solid #FEFDFF;
+*/   
+}
+.page_name{
+    font-family:Helvetica;
+    color: #FEFDFF;
+    display:inline;
+    position:relative;
+    right:2rem;
+/*    border:1px solid #FEFDFF;
+*/}
+
+
 .search{
-    float:right;
+    
     margin-right:1%;
     margin-bottom:.5%;
     width:auto;
     height:auto;
-    
+    display:inline-block;
+    position:relative;
+    left:6rem;
+    top:1rem;
 }
 
 .recipeInput{
     width:auto;
     height:auto;
-    display:block;
+    
 }
 
 .submit{
     width:auto;
     height:auto;
-    display:block;
+    
 }
 
-.page_name{
-    font-family:Helvetica;
-    color: #160C28;
-    margin-left:3rem;
-    display:inline-block;
-}
+
 
 .border{
     font-family:Helvetica;
-    color: #000411;
+    color: black;
     height:auto;
     width:auto;
     text-align: left;
     margin-left:6rem;
     margin-right:6rem;
-    margin-bottom:auto;
-    /*margin-top:;*/
-    border: .2rem solid black;
-    border-radius: 1rem;
-    background-color:#605770;
+    margin-bottom:6rem;
+    
+    border: .1rem solid #C1BFB5;
+    border-radius: .5rem;
+    background-color:#C1BFB5;
     position:relative;
     top:12rem;
     display:block;
@@ -77,6 +105,9 @@ body{
     margin-bottom:2.4rem;
     width:80%;
 }
+
+
+
 .servingsize{
     font-size:1.2rem;
     margin-right:20%;
@@ -99,7 +130,7 @@ body{
     margin-top:1rem;
     float:left;
     border-radius:3px;
-    border: 1px solid black;
+    border: .1rem solid black;
 }
 
 .peoplePic{
@@ -113,13 +144,11 @@ body{
     margin-top:4rem;
 }
 .ingredients{
-    
     margin-top:5%;
     margin-left : auto;
     margin-right: auto;
     width:80%;
 }
-
 
 ul{
     columns:2;
@@ -143,8 +172,7 @@ ul{
     font-family:Helvetica;
     color: #120D31;
     text-align: left;
-    margin-left:4rem;
-    margin-top:1rem;
-    margin-bottom:1rem;
-    position: static;
+    display:block;
+    position:relative;
+    top:8rem;
 }
