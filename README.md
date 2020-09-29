@@ -10,7 +10,7 @@
     * sudo pip3 install tweepy
     * pip install tweepy
     * pip3 install tweepy
-8. Install flask and python-dotenv by using one of the commands above, and replacing tweepy with the name of the program (e.g. pip install flask)
+8. Install flask, fuzzywuzzy and python-dotenv by using one of the commands above, and replacing tweepy with the name of the program (e.g. pip install flask)
 9. Create a file called twitter.env and place your twitter keys and tokens in there. It should look like this:
     * API_KEY='xxxxx'
     * API_S_KEY='xxxxx'
@@ -29,12 +29,17 @@
 
 
 ### List of known problems
-1.  Currently if spoonacular requests run out a random recipe is picked from a list common recipe names.  
-    In the future I want to store the jsons returned by spoonacular and load them when requests run out.  
-    The json.dump() method would be used to write the json to a file after receiving it from spoonacular.  
-    When proj1.py receives a failure status from spoonacular it would load a random recipe from the json file using the json.load() method.
-2.  
+1.  If spoonacular does not provide an image with the recipe a placholder image is used. In the future  
+    I would like to use pixabay, an image search api, to retrieve many photos for a recipe, so a placeholder  
+    image is never needed. A request to pixabay returns a Json with urls and other information for photos.  
+    
+2.  The website is not responsive. This can be fixed by creating a meta tag to adjust the viewport in the html  
+    and adjusting the css to not use any hardcoded values for positions, margins, widths or heights.
 
+3.  No pagination is set up for the search results so they all show up on one page. Depending on the number of results  
+    the javascript would create the appropriate amount of buttons for the pagination. This would be done using a for  
+    loop, createElement and appendChild methods. The results would be stored in an array and when a button is clicked  
+    it loads the appropriate results from the array.
 
 ### List of technical issues and how they were solved
 1.  CSS files were not updating after changing them. I made sure I saved everything, tried logging out of cloud9 and logging back in, and using a private window   
@@ -44,3 +49,11 @@
     None of the additional parameters helped the issue. I then went to the twitter developer page and found the documentation for the standard serach api.  
     The standard search api only provides results for the last 7 days which is why I would occasionally get nothing. I then changed my project to pull  
     a new recipe until it received one that also had a relevant tweet. 
+3.  I was unsure of how to pass the results to the javascript file from the python file. The solution was to create a script in the html that created a variable  
+    that took in the output from python. Then this variable was used in the javascript file.
+
+### Future Improvements
+1.  Create a collage of images that fade in and out to load new images.
+2.  Create a window with a scroll bar for multiple tweets.
+3.  Include descriptions of the recipe in the search results area and on the recipe page.
+4.  Improve the overall look of the website (maybe use a bootstrap theme).
