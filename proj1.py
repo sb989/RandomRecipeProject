@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import requests
 import json
 import random
+from helper_functions import load_random_recipe,save_recipe,search_results,load_recipe
 
 app = flask.Flask(__name__)
 
@@ -27,52 +28,163 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
+carrot = '/static/carrot.png'
+peopleimg = '/static/people.png'
+clockimg = '/static/clock.png'
+img = 'https://spoonacular.com/cdn/ingredients_500x500/apple.jpg'
+ing = []
+servings = 0
+time = 0 
 
-def save_recipe(recipe):
-    file = open('recipes.json','r')
-    recipes = json.load(file)
-    if recipes["nextEntry"]==200:
-        recipes["recipes"].pop(0)
-    else:
-        recipes["nextEntry"]+=1
-    recipes["recipes"].append(recipe)
-    file.close()
-    file = open('recipes.json','w')
-    json.dump(recipes,file,indent=4)
-    file.close()
-
-def load_recipe():
-    file = open('recipes.json','r')
-    recipes = json.load(file)
-    size = recipes["nextEntry"]
-    entry = random.randint(0,size-1)
-    recipe = recipes["recipes"][entry]
-    return recipe
+@app.route('/load_online/<id_num>')
+def recipe_online(id_num):
+    tweet = []
+    original_site = ''
+    screen_name = ''
+    date = ''
+    msg = ''
+    title=''
+    text =''
+    url = 'https://api.spoonacular.com/recipes/{}/information?apiKey={}'.format(id_num,spoonacular_key)
+    response = requests.get(url)
+    json_body = response.json()
+    print(json_body)
+    if 'status' in json_body and json_body["status"] == 'failure':
+        msg = "Spoonacular has reached the max number of requests. Cannot load the specified recipe."
+        return flask.render_template(
+        'error.html',
+        msg=msg,
+        carrot=carrot
+        )
     
+    img = json_body["image"]
+    img = img.strip('\"')
+    title = json_body["title"]
+    title = title.strip('\"')
+    
+    original_site = json_body["sourceUrl"]
+    tweet =api.search(q=title,lang="en",count=100)
+    json_ing = json_body["extendedIngredients"]
+    ing_size = len(ing)
+    time = json_body["readyInMinutes"]
+    servings = json_body["servings"]
+    for jing in json_ing:
+        ing.append(jing["original"])
+    
+    size = len(tweet)
+    if(size > 0):
+        num = random.randint(0,size-1)
+        text = tweet[num].text
+        screen_name = tweet[num].user.screen_name
+        date = tweet[num].created_at
+    else:
+        text = 'No tweets found'
+    
+    return flask.render_template(
+        'index.html',
+         msg = msg,
+        title = title,
+        text = text,
+        screen_name = screen_name,
+        date = date,
+        img = img,
+        ing = ing,
+        servings = servings,
+        time = time,
+        people = peopleimg,
+        clock = clockimg,
+        original_site = original_site,
+        carrot=carrot
+        )
+
+@app.route('/load_local/<index>')
+def recipe_local(index):
+    
+    tweet = []
+    original_site = ''
+    screen_name = ''
+    date = ''
+    msg = ''
+    
+    json_body = load_recipe(int(index))
+    img = json_body["image"]
+    img = img.strip('\"')
+    title = json_body["title"]
+    title = title.strip('\"')
+    
+    original_site = json_body["sourceUrl"]
+    tweet =api.search(q=title,lang="en",count=100)
+    json_ing = json_body["extendedIngredients"]
+    ing_size = len(ing)
+    time = json_body["readyInMinutes"]
+    servings = json_body["servings"]
+    for jing in json_ing:
+        ing.append(jing["original"])
+    
+    size = len(tweet)
+    if(size > 0):
+        num = random.randint(0,size-1)
+        text = tweet[num].text
+        screen_name = tweet[num].user.screen_name
+        date = tweet[num].created_at
+    else:
+        text = 'No tweets found'
+    return flask.render_template(
+        'index.html',
+        msg = msg,
+        title = title,
+        text = text,
+        screen_name = screen_name,
+        date = date,
+        img = img,
+        ing = ing,
+        servings = servings,
+        time = time,
+        people = peopleimg,
+        clock = clockimg,
+        original_site = original_site,
+        carrot=carrot
+        )
+
+@app.route('/results.html',methods=['POST','GET'])
+def results():
+    search = flask.request.form['recipe']
+    print(search)
+    url = "https://api.spoonacular.com/recipes/complexSearch?query={}&apiKey={}".format(search,spoonacular_key)
+    response = requests.get(url)
+    json_body = response.json()
+    msg = ''
+    if 'status' in json_body and json_body["status"] == 'failure':
+        msg = "Spoonacular has reached the max number of requests. Picking a recipe from memory."
+        json_body = search_results(search)
+        #print(results["results"])
+    
+    
+    return flask.render_template('results.html',
+    carrot=carrot,
+    msg=msg,
+    results=json_body["results"]
+    )
+
 @app.route('/')
 def index():
+    original_site = ''
+    screen_name = '@'
+    date = ''
     tweet = []
-    spoon = True
     msg = ''
-    img = 'https://spoonacular.com/cdn/ingredients_500x500/apple.jpg'
-    ing = []
-    peopleimg = 'static/people.png'
-    clockimg = 'static/clock.png'
-    carrot = 'static/carrot.png'
-    servings = 0
-    time = 0 
-    originalSite = ''
     while not tweet:
         url = "https://api.spoonacular.com/recipes/random?apiKey={}".format(spoonacular_key)
         response = requests.get(url)
         json_body = response.json()
         
         if 'status' in json_body and json_body["status"] == 'failure':
-            json_body = load_recipe()
+            json_body = load_random_recipe()
             msg = "Spoonacular has reached the max number of requests. Picking a recipe from memory."
         else:
             json_body = json_body["recipes"][0]
             save_recipe(json_body)
+            
         title = json_body["title"]
         title = title.strip('\"')
         if "image" not in json_body:
@@ -80,7 +192,7 @@ def index():
         img = json_body["image"]
         img = img.strip('\"')
     
-        originalSite = json_body["sourceUrl"]
+        original_site = json_body["sourceUrl"]
         tweet =api.search(q=title,lang="en",count=100)
         json_ing = json_body["extendedIngredients"]
         ing_size = len(ing)
@@ -109,7 +221,7 @@ def index():
         time = time,
         people = peopleimg,
         clock = clockimg,
-        originalSite = originalSite,
+        original_site = original_site,
         carrot=carrot
         )
     
@@ -122,5 +234,5 @@ app.run(
 )
 
 
-#def load_recipe():
+
     

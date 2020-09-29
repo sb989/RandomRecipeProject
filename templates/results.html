@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+        <title>Random Recipes</title>
+        <link rel="stylesheet" href={{url_for('static',filename='styles.css')}}>
+        
+        <script type="text/javascript"> 
+            var txt = '{{ results|tojson }}' 
+        </script>
+
+        
+        <body>
+            
+            <div class="header">
+                <a href = '/' class="carrot">
+                    <img src={{carrot}} class="carrotPic">
+                    <h1 class = "page_name">Random Recipes</h1>
+                </a>
+                <div class = "search">
+                    <form action="/results.html" method="POST" autocomplete="off">
+                        <div>
+                            <input class="recipeInput "id="myInput" name="recipe" type="text" placeholder="Recipe">
+                            <input type="submit" class= "submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <h1 class ="search_results_title">Search Results</h1>
+            
+            <div>
+                <div class = "border">
+                    <div id="results">
+                    </div>
+                </div>
+                <div class="spoon">{{msg}}</div>
+            </div>
+            
+        </body>
+        <script type="text/javascript" src="{{url_for('static',filename='results.js')}}"></script>
+    </head>
+</html>

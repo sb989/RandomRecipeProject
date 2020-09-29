@@ -1,20 +1,22 @@
 <html>
     <head>
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+ 
+
+        <title>Random Recipes</title>
         <link rel="stylesheet" href={{url_for('static',filename='styles.css')}}>
         <body>
             
             <div class="header">
-                
                 <a href = '/' class="carrot">
                     <img src={{carrot}} class="carrotPic">
-                    
                     <h1 class = "page_name">Random Recipes</h1>
                 </a>
-                
                 <div class = "search">
-                    <form autocomplete="off">
+                    <form action="/results.html" method="POST" autocomplete="off">
                         <div>
-                            <input class="recipeInput "id="myInput" type="text" name="recipe" placeholder="Recipe">
+                            <input class="recipeInput "id="myInput" name="recipe" type="text" placeholder="Recipe">
                             <input type="submit" class= "submit">
                         </div>
                     </form>
@@ -26,7 +28,7 @@
                 <div class = "border">
                     <div class = "info1">
                         <div>
-                            <h1 class = "title"><a href={{originalSite}}> <b>{{title}}</b><br> </a></h1> 
+                            <h1 class = "title"><a href={{original_site}}> <b>{{title}}</b><br> </a></h1> 
                             <div class="clearfix">
                                 <img src={{img}} class="foodPic">
                             </div>

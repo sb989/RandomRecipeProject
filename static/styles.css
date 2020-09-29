@@ -2,9 +2,17 @@ body{
     background-color:#FEFDFF;
     overflow-y:scroll;
     height:100%;
-    font-size:12;
+    font-size:12px;
     position:relative;
     
+}
+
+a:link{
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
 }
 
 .header{
@@ -20,7 +28,6 @@ body{
 }
 
 .carrot{
-    
     position:relative;
     left:7rem;
     top:1.5rem;
@@ -29,6 +36,11 @@ body{
     justify-content:center;
     display:inline-block;
 }
+
+.carrot:hover{
+    text-decoration:none;
+}
+
 .carrotPic{
    height:100%;
    width:auto;
@@ -46,7 +58,6 @@ body{
 
 
 .search{
-    
     margin-right:1%;
     margin-bottom:.5%;
     width:auto;
@@ -66,7 +77,6 @@ body{
 .submit{
     width:auto;
     height:auto;
-    
 }
 
 
@@ -92,8 +102,7 @@ body{
 
 .title{
     text-align: left;
-/*    margin-left:4em;
-*/    margin-top:2rem;
+    margin-top:2rem;
 }
 .info1{
     display:flex;
@@ -106,11 +115,36 @@ body{
     width:80%;
 }
 
+.search_results_title{
+    position:relative;
+    top:11rem;
+    font-family:Helvetica ;
+    margin-left:6rem;
+    color:#343E3D;
+}
 
+.search_results{
+    font-family:Helvetica;
+    font-size:1.2rem;
+    margin-top:2rem;
+    margin-left:4rem;
+    display:flex;
+    text-decoration:none;
+    width:auto;
+}
+
+.search_results_img{
+    max-width:70%;
+    max-height:70%;
+    height:auto;
+    width:auto;
+    border-radius:3px;
+    border: .1rem solid black;
+}
 
 .servingsize{
     font-size:1.2rem;
-    margin-right:20%;
+    margin-right:10%;
 }
 .servingsizeNum{
     font-size:1.3rem;
@@ -175,4 +209,11 @@ ul{
     display:block;
     position:relative;
     top:8rem;
+}
+
+.error_msg{
+    position:relative;
+    top:12rem;
+    font-size:2rem;
+    margin-left:1rem;
 }
